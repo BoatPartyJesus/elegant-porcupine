@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  service:
+    container_name: nest_service
+    build:
+      context: .
+    ports:
+      - "3000:3000"
