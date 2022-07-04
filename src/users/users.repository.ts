@@ -3,6 +3,9 @@ import { UserData } from './user.interface';
 
 @Injectable()
 export class UsersRepository {
+  // I have moved this data out of the service layer into the repository/data access layer to better emulate
+  // a real-world application. Allowing for business logic to be moved into the service layer keeping the controller "thin"
+  // this will allow for easier testing and less mocking.
   getUsers(): UserData[] {
     return [
       {

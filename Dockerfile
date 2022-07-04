@@ -6,6 +6,8 @@ RUN npm ci
 RUN npm run build
 
 FROM node:17.9.0-alpine AS production
+# Run the application as a non-root user for security reasons. Running an application as a root user
+# could give an attacker access to the docker host.
 RUN adduser -D app
 USER app
 
