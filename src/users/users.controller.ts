@@ -15,12 +15,6 @@ export class UsersController {
   @ApiResponse({ status: 200, description: 'Return all users' })
   getAll() {
     const users = this.userService.getUsers();
-    const orderedUsers = users.sort((a, b) => {
-      const aFullName = `${a.firstName}#${a.lastName}`;
-      const bFullName = `${b.firstName}#${b.lastName}`;
-      return aFullName.localeCompare(bFullName, 'en', { sensitivity: 'base' });
-    });
-
-    return orderedUsers;
+    return users;
   }
 }

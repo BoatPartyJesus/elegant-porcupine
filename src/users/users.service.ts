@@ -1,50 +1,22 @@
 import { Injectable } from '@nestjs/common';
-import { UserData } from './user.interface';
+import { UsersRepository } from './users.repository';
 
 @Injectable()
 export class UsersService {
-  getUsers(): UserData[] {
-    return [
-      {
-        id: 1,
-        firstName: 'Oliver',
-        lastName: 'Gartland',
-      },
-      {
-        id: 2,
-        firstName: 'Anna',
-        lastName: 'Watts',
-      },
-      {
-        id: 3,
-        firstName: 'Andy',
-        lastName: 'Brown',
-      },
-      {
-        id: 4,
-        firstName: 'Maisie',
-        lastName: 'Curtis',
-      },
-      {
-        id: 5,
-        firstName: 'Jonathan',
-        lastName: 'Curtis',
-      },
-      {
-        id: 6,
-        firstName: 'Jonathan',
-        lastName: 'Wright',
-      },
-      {
-        id: 7,
-        firstName: 'Jennifer',
-        lastName: 'Tomkinson',
-      },
-      {
-        id: 8,
-        firstName: 'Rich',
-        lastName: 'Richman',
-      },
-    ];
+  private readonly usersRepository: UsersRepository;
+  constructor(usersRepository: UsersRepository) {
+    this.usersRepository = usersRepository;
+  }
+
+  getUsers() {
+    const users = this.usersRepository.getUsers();
+    // Connected to a Database source this would be done as part of the query.
+    const orderedUsers = users.sort((a, b) => {
+      const aFullName = `${a.firstName}#${a.lastName}`;
+      const bFullName = `${b.firstName}#${b.lastName}`;
+      return aFullName.localeCompare(bFullName, 'en', { sensitivity: 'base' });
+    });
+
+    return orderedUsers;
   }
 }
