@@ -37,3 +37,7 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## Future Developments
+- If the application was to grow and handle more data, I would look to implement a database solution next using a relation datbase such as PostgreSQL.
+- For deployment of the application as it dockerised, it can be deployed into a docker swarm or kubernetes cluster.
